@@ -1,4 +1,34 @@
 #include<stdio.h>
+#include <string.h>
+
+
+
+
+int main(){
+	FILE *archivo;
+	char pregunta[50];
+	char b;
+	
+
+archivo=fopen("1.txt", "r");
+if (archivo==NULL){
+   printf("\nNo existe el archivo");
+  }
+
+while(!feof(archivo)){
+	fgets(pregunta,50,archivo);
+	if(pregunta[0]!='#'){
+		printf("%s",pregunta);
+	}
+	
+}
+b=pregunta[1];
+printf("%c",b);
+fclose(archivo);
+}
+
+
+
 
 int num_cue(int *cue_alu);
 
