@@ -47,6 +47,19 @@ int main(){
 		printf("Ingresa tu nombre:");
 		gets("")
 	}
+	struct Reactivo{
+	
+	char pregunta[100];
+	char op1[100];
+	char op2[100];
+	char op3[100];
+	char op4[100];
+	int resp;
+	int presento=0;
+};
+
+struct Reactivo preguntas[30];
+struct Reactivo examen[10];
 }
 
 int num_cue(int *cue_alu){
