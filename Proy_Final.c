@@ -7,6 +7,8 @@
 int num_ran(int y);
 int num_cue(int *cue_alu);
 
+void final(int b, int *cue);
+
 int main(){
 	FILE *archivo;
 	int o,i,L=0,x=0,cue,calif,d=0;
@@ -122,6 +124,39 @@ int num_cue(int *cue_alu){
 		fclose(archivo);
 		return y;
 	}
+}
+
+void final(int b,int *cue){
+	FILE *archivo;
+	FILE *arch;
+	int n,y=0;
+	
+	archivo=fopen("info.txt", "r");
+	arch=fopen("info2.txt","a+");
+	n=*cue;
+	
+	while(!feof(archivo)){
+		fscanf(archivo,"%d,%d ",&n,&y);
+		if(n==*cue){
+			fprintf(arch,"%d,%d ",n,b);
+		}
+		else{
+		fprintf(arch,"%d,%d ",n,y);
+		}
+	}
+	fclose(archivo);
+	fclose(arch);
+	archivo=fopen("info.txt", "w+");
+	arch=fopen("info2.txt","r");
+	while(!feof(arch)){
+		fscanf(arch,"%d,%d ",&n,&y);
+		fprintf(archivo,"%d,%d ",n,y);
+	}
+fclose(arch);
+fclose(archivo);
+arch=fopen("info2.txt","w");
+fflush(arch);
+fclose(arch);
 }
 
 
