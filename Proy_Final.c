@@ -5,9 +5,62 @@
 int num_ran(int y);
 
 int main(){
-	int d=0;
+	FILE *archivo;
+	int o,i,L=0,x=0,cue,calif,d=0;
+	char p,r;
+	char react[150],nombre[100];
+	int *b, *num;
+	b=&cue;
 	
-	num_ran(d);
+	printf("Ingresa tu numero de cuenta y tu nombre \nIngresa tu nombre:\n");
+	gets(nombre);
+	setbuf(stdin,NULL);
+	printf("\nIngresa tu numero de cuenta:\n");
+	scanf("%d",&*b);
+	setbuf(stdin,NULL);
+	calif=num_cue(b);
+	printf("------------------------------------------------------------------------------------------------------------------------\n");
+	for(L=0;L<10;L++){
+		num_ran(d);
+		d++;
+		archivo=fopen("preguntas.txt", "r");
+		i=0;
+		while(i<o){
+			fgets(react,150,archivo);
+			
+			if(react[0]=='*'){
+				i++;
+			}
+			if(i==o-1){
+				if(react[0]=='#'){
+					r=react[1];
+				}
+				if(react[0]!='#'&&react[0]!='*'){
+					printf("%s",react);
+				}
+			}
+		
+		}
+		printf("%c\n",r);
+		setbuf(stdin,NULL);
+		scanf(" %c",&p);
+		p=toupper(p);
+		if(p==r){
+			x++;
+		}
+		printf("\n");
+	}
+	printf("Obtuviste %d en este examen\n",x);
+	if(calif!=0){
+		calif = (x + calif)/2;
+	}
+	else{
+	calif=x;
+	}
+	printf("\n%s tu promedio es de: %d\n",nombre,calif);
+	final(calif, b);
+	fclose(archivo);
+	return 0;
 }
 int num_ran(int y){
 	FILE *archivo;
