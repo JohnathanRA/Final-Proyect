@@ -1,65 +1,41 @@
 #include<stdio.h>
-#include <string.h>
+#include<string.h>
+#include<time.h>
 
-
-
+int num_ran(int y);
 
 int main(){
-	FILE *archivo;
-	char pregunta[50];
-	char b;
+	int d=0;
 	
-
-archivo=fopen("1.txt", "r");
-if (archivo==NULL){
-   printf("\nNo existe el archivo");
-  }
-
-while(!feof(archivo)){
-	fgets(pregunta,50,archivo);
-	if(pregunta[0]!='#'){
-		printf("%s",pregunta);
-	}
-	
+	num_ran(d);
 }
-b=pregunta[1];
-printf("%c",b);
-fclose(archivo);
-}
-
-
-
-
-int num_cue(int *cue_alu);
-
-int main(){	
+int num_ran(int y){
 	FILE *archivo;
-	char usu[20];
-	int cue, t;
-	int *a, *b;
-	b=&cue;
-	
-	printf("Ingresa tu numero de cuenta y tu nombre \nIngresa tu numero de cuenta:");
-	scanf("%d",&*b);
-	t=num_cue(b);
-	
-	if(t==1){
-		printf("Ingresa tu nombre:");
-		gets("")
+	int aleat[100];
+	int i=0,z;
+	int p;
+	if(y==0){
+		archivo=fopen("preg.txt", "w");
+		fflush(archivo);
+		fclose(archivo);	
 	}
-	struct Reactivo{
+	srand(time(NULL));
+	do{
+	i=0;
+	z=(rand()%100)+0;
+	archivo=fopen("preg.txt", "a+");
+	while(!feof(archivo)){
+		fscanf(archivo,"%d,",&p);
+    	if(z==p){
+    		i=-1;
+		}
+	}
+	}
+	while(i==-1||z==0);
 	
-	char pregunta[100];
-	char op1[100];
-	char op2[100];
-	char op3[100];
-	char op4[100];
-	int resp;
-	int presento=0;
-};
-
-struct Reactivo preguntas[30];
-struct Reactivo examen[10];
+	fprintf(archivo, "%d,", z);
+	fclose(archivo);
+	return z;	
 }
 
 int num_cue(int *cue_alu){
